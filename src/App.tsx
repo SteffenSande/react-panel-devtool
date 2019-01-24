@@ -1,28 +1,33 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import "./App.css";
+import HeadlineRevision from "./HeadlineRevision";
 
-class App extends Component {
+export interface IAppState {
+  title: string;
+  author: string;
+  published: string;
+}
+
+export default class App extends React.Component<{}, IAppState> {
+  constructor(props: {}) {
+    super(props);
+
+    this.state = {
+      title: "some Title",
+      author: "Someone that writes",
+      published: "Longer time ago"
+    };
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <HeadlineRevision
+          title={this.state.title}
+          author={this.state.author}
+          published={this.state.published}
+        />
       </div>
     );
   }
 }
-
-export default App;
